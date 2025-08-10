@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Alice Johnson",
+    "roll_no": "VI EC-1"
+  },
+  {
+    "name": "Bob Smith",
+    "roll_no": "VI EC-2"
+  },
+  {
+    "name": "Charlie Davis",
+    "roll_no": "VI EC-3"
+  },
+  {
+    "name": "Diana Evans",
+    "roll_no": "VI EC-4"
+  },
+  {
+    "name": "Ethan Wilson",
+    "roll_no": "VI EC-5"
+  },
+  {
+    "name": "Fiona Brown",
+    "roll_no": "VI EC-6"
+  },
+  {
+    "name": "George Miller",
+    "roll_no": "VI EC-7"
+  },
+  {
+    "name": "Hannah Taylor",
+    "roll_no": "VI EC-8"
+  }
+]
