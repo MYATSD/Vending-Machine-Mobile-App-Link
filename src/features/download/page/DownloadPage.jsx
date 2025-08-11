@@ -7,13 +7,17 @@ const DownloadPage = () => {
     <Container>
 
 
-      <section>
+      <section className=' '>
 
-       <div className='md:flex gap-5 '>
-       <div className='order-2 md:mt-40'>
-         <h1 className='font-bold  text-xl sm:text-2xl md:text-5xl lg:text-7xl text-center '>Download This App</h1>
-         <p className='font-medium text-md mt-10 px-5'>Download the latest version of our application to enjoy improved features, enhanced performance, and a smoother experience. Click the button below to start your download instantly. Ensure that your device meets the system requirements before installation. All files are verified and safe to use, giving you a secure and reliable setup process.</p>
-         <button className='w-40 h-14 mx-5 mt-10 bg-blue-500 font-bold text-xl text-white rounded-md'>Download</button>
+       <div className='flex flex-col lg:flex lg:flex-row md:gap-5 '>
+         {/* <h1 className='font-bold  text-2xl sm:text-2xl md:text-5xl lg:text-7xl text-center md:hidden block '>Download This App</h1> */}
+       <div className=' lg:order-2 mt-5 lg:mt-40'>
+         <h1 className='font-bold  text-4xl  md:text-5xl lg:text-7xl text-center  '>Download This App</h1>
+         <p className='font-medium text-md mt-10 px-5 hidden md:block'>Download the latest version of our application to enjoy improved features, enhanced performance, and a smoother experience. Click the button below to start your download instantly. Ensure that your device meets the system requirements before installation. All files are verified and safe to use, giving you a secure and reliable setup process.</p>
+         <p className='font-medium text-sm mt-5 px-5 block md:hidden'>Download the latest version of our application to enjoy improved features, enhanced performance, and a smoother experience. Click the button below to start your download instantly. </p>
+
+         <button className='w-28 lg:w-40 h-10 lg:h-14 mx-5 mt-5 lg:mt-10 bg-blue-500 font-bold text-md md:text-xl text-white rounded-md'>Download</button>
+
        </div>
          <img src="/assets/mobile-app-download.jpg" alt=""  className=''/>
        </div>
