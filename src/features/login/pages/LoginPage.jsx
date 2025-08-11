@@ -1,18 +1,20 @@
-
-   "use client";
+"use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useStudentInfo from "@/store/useStudentInfo";
 
 export default function LoginPage() {
   const [name, setName] = useState("");
   const [rollNo, setRollNo] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-
+  const {students_info} = useStudentInfo()
+    console.log(students_info)
   const handleLogin = async () => {
-    const res = await fetch("/data.json");
-    const students = await res.json();
-    const exists = students.some(
+  
+    // const res = await fetch("/data.json");
+    // const students = await res.json();
+    const exists = students_info.map(
       (s) =>
         s.name.toLowerCase() === name.trim().toLowerCase() &&
         s.rollNo === rollNo.trim()

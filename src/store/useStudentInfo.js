@@ -1,0 +1,65 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+
+const useStudentInfo = create(
+
+    persist((set)=>({
+
+
+        students_info: [
+
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "roll_no": "VI EC-1",
+    "isRegistered": false
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "roll_no": "VI EC-2",
+    "isRegistered": false
+  },
+  {
+    "id": 3,
+    "name": "Charlie Davis",
+    "roll_no": "VI EC-3",
+    "isRegistered": false
+  },
+  {
+    "id": 4,
+    "name": "Diana Evans",
+    "roll_no": "VI EC-4",
+    "isRegistered": false
+  },
+  {
+    "id": 5,
+    "name": "Ethan Wilson",
+    "roll_no": "VI EC-5",
+    "isRegistered": false
+  },
+  {
+    "id": 6,
+    "name": "Fiona Brown",
+    "roll_no": "VI EC-6",
+    "isRegistered": false
+  },
+  {
+    "id": 7,
+    "name": "George Miller",
+    "roll_no": "VI EC-7",
+    "isRegistered": false
+  },
+  {
+    "id": 8,
+    "name": "Hannah Taylor",
+    "roll_no": "VI EC-8",
+    "isRegistered": false
+  }
+]
+    }))
+)
+
+
+export default useStudentInfo;
