@@ -53,8 +53,26 @@ const useStudentInfo = create(
   },
   {
     "id": 8,
+    "name": "Hsu Myat Sandi Aung",
+    "roll_no": "VI EC-Ext:3",
+    "isRegistered": false
+  },
+  {
+    "id": 9,
     "name": "Hannah Taylor",
     "roll_no": "VI EC-8",
+    "isRegistered": false
+  },
+  {
+    "id": 10,
+    "name": "Theint Zar Zar Htet",
+    "roll_no": "VI EC-Ext:1",
+    "isRegistered": false
+  },
+  {
+    "id": 11,
+    "name": "Wuttyi Nandar",
+    "roll_no": "VI EC-Ext:2",
     "isRegistered": false
   }
 ]

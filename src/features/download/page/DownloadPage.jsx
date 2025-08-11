@@ -1,9 +1,12 @@
 import Container from '@/components/Container'
 import React from 'react'
+import DownloadPageLayout from '../components/DownloadPageLayout'
 
 const DownloadPage = () => {
   return (
+<DownloadPageLayout>
 
+  
     <Container>
 
 
@@ -24,6 +27,7 @@ const DownloadPage = () => {
 
       </section>
     </Container>
+</DownloadPageLayout>
 
   )
 }
