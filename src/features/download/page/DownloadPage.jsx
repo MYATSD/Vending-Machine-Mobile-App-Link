@@ -19,7 +19,7 @@ const DownloadPage = () => {
          <p className='font-medium text-md mt-10 px-5 hidden md:block'>Download the latest version of our application to enjoy improved features, enhanced performance, and a smoother experience. Click the button below to start your download instantly. Ensure that your device meets the system requirements before installation. All files are verified and safe to use, giving you a secure and reliable setup process.</p>
          <p className='font-medium text-sm mt-5 px-5 block md:hidden'>Download the latest version of our application to enjoy improved features, enhanced performance, and a smoother experience. Click the button below to start your download instantly. </p>
 
-         <button className='w-28 lg:w-40 h-10 lg:h-14 mx-5 mt-5 lg:mt-10 bg-blue-500 font-bold text-md md:text-xl text-white rounded-md'>Download</button>
+         <a href='/files/base.apk' download className='w-28 px-2  lg:w-40 h-10 lg:h-14 mx-5 mt-5 lg:mt-10 bg-blue-500 font-bold text-md md:text-xl text-white rounded-md'>Download</a>
 
        </div>
          <img src="/assets/mobile-app-download.jpg" alt=""  className=''/>

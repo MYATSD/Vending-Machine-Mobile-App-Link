@@ -18,6 +18,7 @@ export default function DownloadPageLayout({ children }) {
   useEffect(() => {
 
     const isLogIn =localStorage.getItem("isLoggedIn")
+    console.log(isLogIn)
 
     if (!isLogIn) {
       router.push("/");
