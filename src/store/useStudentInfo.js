@@ -74,6 +74,11 @@ const useStudentInfo = create(
     "name": "Wuttyi Nandar",
     "roll_no": "VI EC-Ext:2",
     "isRegistered": false
+  },  {
+    "id": 12,
+    "name": "Oak Kyaw",
+    "roll_no": "VI EC-Ext:4",
+    "isRegistered": false
   }
 ]
     }))
