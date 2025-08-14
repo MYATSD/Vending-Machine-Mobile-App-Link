@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useStudentInfo from "@/store/useStudentInfo";
 import Container from "@/components/Container";
+import Header from "@/components/Header";
 
 export default function LoginPage() {
   const [name, setName] = useState("");
@@ -12,9 +13,9 @@ export default function LoginPage() {
   const { students_info } = useStudentInfo();
   const handleLogin = async () => {
    
-    // const res = await fetch("/data.json");
-    // const students = await res.json();
-    const currentStudent = students_info.filter(
+     const res = await fetch("https://studentsinfo-production.up.railway.app/students_info");
+     const students = await res.json();
+    const currentStudent = students.filter(
       (s) =>
         s.name.toLowerCase() == name.trim().toLowerCase()
     );
@@ -33,6 +34,8 @@ export default function LoginPage() {
 
   return (
     
+    <>
+    <Header/>
      <section>
       <div className="relative md:static md:flex md:flex-row gap-10 w-full">
         <div className=" w-full h-screen">
@@ -118,6 +121,8 @@ export default function LoginPage() {
         </div>
       </div>
     </section>
+    
+    </>
   
   );
 }
