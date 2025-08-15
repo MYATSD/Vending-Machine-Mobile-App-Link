@@ -19,18 +19,18 @@ const Header = () => {
             </h1> */}
           </div>
         </div>
-        <div className=" flex gap-3 items-center">
+        <a  href='/dashboard' className=" flex gap-3 items-center">
           <img
            src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
             alt="account photo"
             className="border-2 border-white shadow-sm size-12 rounded-full object-cover object-top"
           />
           <div>
-            <a href='/dashboard' className="font-bold text-wrap"> Dashboard</a>
+            <p  className="font-bold text-wrap"> Dashboard</p>
            
           </div>
           {/* <LogoutButton> Logout </LogoutButton> */}
-        </div>
+        </a>
       </div>
     </header>
    </Container>

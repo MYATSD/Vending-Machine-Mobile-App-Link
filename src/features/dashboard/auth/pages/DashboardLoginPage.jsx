@@ -20,16 +20,16 @@ export default function DashboardLoginPage() {
     );
     const admin = await res.json();
     console.log(admin);
-     const currentAdmin =  admin.email.toLowerCase() == data.email.trim().toLowerCase()? admin.email: ""
+     const currentAdmin =  admin[0].email.toLowerCase() == data.email.trim().toLowerCase()? admin[0].email: ""
      console.log(currentAdmin)
   
-     const currentAdminPassword= admin.password
+     const currentAdminPassword= admin[0].password
     // const current =currentStudent[0]?.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase()
     // console.log(currentStudent[0].id)
 
         if (currentAdminPassword== data.password.trim().replace(/[\s:;.-]/g, "").toLowerCase()) {
           localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("Admin Name", data.name);
+          localStorage.setItem("Admin Name", admin[0].name);
           router.push("/dashboard/students");
         } else {
           setError("Invalid name or roll number.");

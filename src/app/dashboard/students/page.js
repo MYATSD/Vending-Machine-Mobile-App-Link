@@ -1,8 +1,9 @@
+import StudentPage from '@/features/dashboard/students/page/StudentPage'
 import React from 'react'
 
 const Page = () => {
   return (
-    <div>Page</div>
+   <StudentPage/>
   )
 }
 
