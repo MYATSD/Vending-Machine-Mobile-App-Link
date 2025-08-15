@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentAdminInfo ,setCurrentAdminInfo] = useState({})
+   const adminName = localStorage.getItem("Admin Name");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,7 +13,7 @@ const Header = () => {
         const adminInfo = await res.json();
         console.log(adminInfo)
 
-        const adminName = localStorage.getItem("Admin Name");
+       
         const foundAdmin = adminInfo?.filter(
           (admin) => admin.name === adminName
         );
@@ -27,8 +28,9 @@ const Header = () => {
     };
 
     fetchData();
-  }, [localStorage.getItem("isLoggedIn")]); // run only once
+  }, []); // run only once
  console.log(currentAdminInfo)
+ 
   return (
     <>
       {isAdmin && (
