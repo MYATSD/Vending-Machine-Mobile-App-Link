@@ -1,39 +1,40 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import useAdminInfo from "@/store/useAdminInfo";
+import React, { useState } from "react";
 
 const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [currentAdminInfo ,setCurrentAdminInfo] = useState({})
+  // const [currentAdminInfo ,setCurrentAdminInfo] = useState({})
    const adminName = localStorage.getItem("Admin Name");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("https://studentsinfo-production.up.railway.app/admin_info");
-        const adminInfo = await res.json();
-        console.log(adminInfo)
+   const {currentAdminInfo} = useAdminInfo()
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const res = await fetch("https://studentsinfo-production.up.railway.app/admin_info");
+//         const adminInfo = await res.json();
+//         console.log(adminInfo)
 
        
-        const foundAdmin = adminInfo?.filter(
-          (admin) => admin.name === adminName
-        );
+//         const foundAdmin = adminInfo?.filter(
+//           (admin) => admin.name === adminName
+//         );
 
-        if (foundAdmin) {
-          setIsAdmin(true);
-          setCurrentAdminInfo(foundAdmin[0])
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+//         if (foundAdmin) {
+//           setIsAdmin(true);
+//           // setCurrentAdminInfo(foundAdmin[0])
+//         }
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
 
-    fetchData();
-  }, []); // run only once
- console.log(currentAdminInfo)
+//     fetchData();
+//   }, []); // run only once
+ console.log(currentAdminInfo.profile_image)
  
   return (
     <>
-      {isAdmin && (
+      {/* {isAdmin && ( */}
         <header className="mb-5 py-3 border-b border-stone-200 sticky top-0 z-50 bg-white">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -57,7 +58,8 @@ const Header = () => {
             </div>
           </div>
         </header>
-      )}
+      {/* ) */}
+      {/* } */}
     </>
   );
 };

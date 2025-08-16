@@ -12,6 +12,7 @@ const StudentPage = () => {
               try {
                 const res = await fetch("https://studentsinfo-production.up.railway.app/students_info");
                 const students = await res.json();
+                console.log(students)
                 setStudentsList(students)
         
               } catch (error) {
@@ -120,7 +121,7 @@ const StudentPage = () => {
             ) : (
               data?.data?.map((sale) => <SaleRow sale={sale} key={sale.id} />)
             )} */}
-            {studentsList?.map((student)=> <StudentList student={student}/>)}
+            {studentsList?.map((student)=> <StudentList student={student} key={student.id}/>)}
           </tbody>
         </table>
       </div>

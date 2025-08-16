@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import useStudentInfo from "@/store/useStudentInfo";
+import useStudentInfo from "@/store/useAdminInfo";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 

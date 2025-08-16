@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import useStudentInfo from "@/store/useStudentInfo";
+import useStudentInfo from "@/store/useAdminInfo";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import { useForm } from "react-hook-form";
@@ -13,6 +13,8 @@ export default function DashboardLoginPage() {
   const router = useRouter();
   const { students_info } = useStudentInfo();
   const { handleSubmit, register, isSubmitting } = useForm();
+  const {currentAdminInfo ,setCurrentAdmin}         = useStudentInfo()
+  console.log(currentAdminInfo)
   const handleLogin = async (data) => {
     console.log(data)
     const res = await fetch(
@@ -20,8 +22,7 @@ export default function DashboardLoginPage() {
     );
     const admin = await res.json();
     console.log(admin);
-     const currentAdmin =  admin[0].email.toLowerCase() == data.email.trim().toLowerCase()? admin[0].email: ""
-     console.log(currentAdmin)
+     const currentAdminEmail =  admin[0].email.toLowerCase() == data.email.trim().toLowerCase()? admin[0].email: ""
   
      const currentAdminPassword= admin[0].password
     // const current =currentStudent[0]?.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase()
@@ -30,6 +31,13 @@ export default function DashboardLoginPage() {
         if (currentAdminPassword== data.password.trim().replace(/[\s:;.-]/g, "").toLowerCase()) {
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("Admin Name", admin[0].name);
+          const currenAdmin = { name : admin[0].name,
+            email: admin[0].email,
+            password: admin[0].password,
+            profile_image: admin[0].profile_image,
+            isLoggedIn: true
+          }
+          setCurrentAdmin(currenAdmin)
           router.push("/dashboard/students");
         } else {
           setError("Invalid name or roll number.");
