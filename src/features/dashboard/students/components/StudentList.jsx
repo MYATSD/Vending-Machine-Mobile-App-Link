@@ -2,8 +2,27 @@
 import { ArrowRight, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
+import useSWR, { mutate } from 'swr'
 
 const StudentList = ({student: {id,name,roll_no,isLoggedIn}}) => {
+   const fetcher = (url) => fetch(url).then((res) => res.json());
+
+ const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
+  const handleDeleteBtn = async()=>{
+    alert("Are you sure you want to delete?")
+   const res = await fetch(`https://studentsinfo-production.up.railway.app/students_info/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      
+    }
+   )
+   mutate("https://studentsinfo-production.up.railway.app/students_info")
+    console.log(id)
+
+  }
  
   return (
       <tr className=" hover:bg-pink-50">
@@ -43,6 +62,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn}}) => {
            <div className="inline-flex  shadow-sm" role="group">
              <button
                type="button"
+               onClick={handleDeleteBtn}
              
                className="size-10 flex justify-center items-center  bg-white border border-stone-200    hover:bg-stone-100 hover:text-pink-700 focus:z-10 focus:ring-2 focus:ring-pink-700 focus:text-pink-700 dark:bg-stone-800 dark:border-stone-700 dark:text-white dark:hover:text-white dark:hover:bg-stone-700 dark:focus:ring-pink-500 dark:focus:text-white"
              >

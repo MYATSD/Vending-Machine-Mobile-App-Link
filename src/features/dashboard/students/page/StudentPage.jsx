@@ -4,9 +4,14 @@ import Header from "../../components/Header";
 import { ArrowRight, RotateCcw, Search, Trash2, X } from "lucide-react";
 import StudentList from "../components/StudentList";
 import Container from "@/components/Container";
+import useSWR from "swr";
 
 const StudentPage = () => {
   const [studentsList, setStudentsList] = useState([]);
+ const fetcher = (url) => fetch(url).then((res) => res.json());
+
+ const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
+//  setStudentsList(data)
   const handleCreateBtn = async () => {
     console.log("creating")
     const res = await fetch(
@@ -33,22 +38,7 @@ const StudentPage = () => {
     setStudentsList(...studentsList, data)
 
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://studentsinfo-production.up.railway.app/students_info"
-        );
-        const students = await res.json();
-        console.log(students);
-        setStudentsList(students);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
 
-    fetchData();
-  }, []);
   return (
     <>
       <Container>
@@ -149,7 +139,7 @@ const StudentPage = () => {
             ) : (
               data?.data?.map((sale) => <SaleRow sale={sale} key={sale.id} />)
             )} */}
-                {studentsList?.map((student) => (
+                {data?.map((student) => (
                   <StudentList student={student} key={student.id} />
                 ))}
               </tbody>
