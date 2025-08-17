@@ -1,41 +1,24 @@
 "use client";
 import useAdminInfo from "@/store/useAdminInfo";
 import React, { useState } from "react";
+import useSWR from "swr";
 
 const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
-  // const [currentAdminInfo ,setCurrentAdminInfo] = useState({})
-   const adminName = localStorage.getItem("Admin Name");
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const { data, isLoading, error } = useSWR(
+    "https://studentsinfo-production.up.railway.app/admin_info",
+    fetcher
+  );
+  
    const {currentAdminInfo} = useAdminInfo()
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const res = await fetch("https://studentsinfo-production.up.railway.app/admin_info");
-//         const adminInfo = await res.json();
-//         console.log(adminInfo)
 
-       
-//         const foundAdmin = adminInfo?.filter(
-//           (admin) => admin.name === adminName
-//         );
-
-//         if (foundAdmin) {
-//           setIsAdmin(true);
-//           // setCurrentAdminInfo(foundAdmin[0])
-//         }
-//       } catch (error) {
-//         console.error("Error fetching data:", error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []); // run only once
- console.log(currentAdminInfo.profile_image)
+ console.log(currentAdminInfo)
  
-  return (
-    <>
-      {/* {isAdmin && ( */}
-        <header className="mb-5 py-3 border-b border-stone-200 sticky top-0 z-50 bg-white">
+return (
+  <>
+  {currentAdminInfo.isLoggedIn && (
+  <header className="mb-5 py-3 border-b border-stone-200 sticky top-0 z-50 bg-white">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <div className="flex items-end gap-3">
@@ -58,10 +41,12 @@ const Header = () => {
             </div>
           </div>
         </header>
-      {/* ) */}
-      {/* } */}
-    </>
-  );
+ )}
+  
+  </>
+  
+ 
+)
 };
 
 export default Header;

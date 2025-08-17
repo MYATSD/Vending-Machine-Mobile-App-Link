@@ -5,6 +5,7 @@ import { ArrowRight, RotateCcw, Search, Trash2, X } from "lucide-react";
 import StudentList from "../components/StudentList";
 import Container from "@/components/Container";
 import useSWR from "swr";
+import Link from "next/link";
 
 const StudentPage = () => {
   const [studentsList, setStudentsList] = useState([]);
@@ -44,8 +45,8 @@ const StudentPage = () => {
       <Container>
         <Header />
         <section>
-          <div className="flex justify-between mb-5">
-            <div className="flex gap-3">
+          <div className="flex justify-between mb-5 w-full">
+            <div className="flex gap-3 justify-between items-center w-full">
               <div className="relative ">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                   <Search className="w-4 h-4 text-stone-500 dark:text-stone-400" />
@@ -67,9 +68,9 @@ const StudentPage = () => {
             )} */}
               </div>
               <div>
-                <button className="" onClick={handleCreateBtn}>
-                  create student
-                </button>
+                <Link href={"/dashboard/students/student-create"} className=" bg-pink-600 text-white  px-4 py-2 rounded" onClick={handleCreateBtn}>
+                  Create student
+                </Link>
               </div>
             </div>
           </div>

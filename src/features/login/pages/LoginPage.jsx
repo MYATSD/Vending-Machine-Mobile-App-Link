@@ -4,31 +4,56 @@ import { useRouter } from "next/navigation";
 import useStudentInfo from "@/store/useAdminInfo";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
+import useSWR from "swr";
 
 export default function LoginPage() {
   const [name, setName] = useState("");
   const [rollNo, setRollNo] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const router = useRouter();
   const { students_info } = useStudentInfo();
+  
+   const fetcher = (url) => fetch(url).then((res) => res.json());
+    const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
   const handleLogin = async () => {
    
-     const res = await fetch("https://studentsinfo-production.up.railway.app/students_info");
-     const students = await res.json();
-    const currentStudent = students.filter(
+    const currentStudentName =name.trim().toLowerCase()
+    const currentStudent= data?.filter(
       (s) =>
-        s.name.toLowerCase() == name.trim().toLowerCase()
+        s.name.toLowerCase() == currentStudentName
     );
     // const currentStudentID = currentStudent[0].id
-    const currentStudentRollNo =currentStudent[0]?.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase()
-    // console.log(currentStudent[0].id)
+    const currentStudentRollNo =currentStudent[0].roll_no
+    const currentStudentId =currentStudent[0].id
 
-    if (currentStudentRollNo== rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase()) {
-      localStorage.setItem("isLoggedIn", "true");
+    console.log(currentStudentRollNo)
+    console.log(rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase())
+
+    if (currentStudentRollNo?.trim().replace(/[\s:;.-]/g, "").toLowerCase() == rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase()) {
+      const res =await fetch(`https://studentsinfo-production.up.railway.app/students_info/${currentStudentId}`,{
+
+
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+          {
+            
+          "id": currentStudent[0].id,
+          "name": currentStudent[0].name,
+          "roll_no" :currentStudent[0].roll_no,
+          "isLoggedIn": true
+          }
+        )
+      })
+      const data = await res.json()
+      console.log(data)
+      localStorage.setItem("isLoggedIn", currentStudent[0].isLoggedIn);
       localStorage.setItem("studentName", name);
       router.push("/download");
     } else {
-      setError("Invalid name or roll number.");
+      // setError("Invalid name or roll number.");
     }
   };
 
