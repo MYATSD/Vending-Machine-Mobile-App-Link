@@ -89,7 +89,7 @@ const StudentPage = () => {
                 </Sortable>
               </th> */}
                   <th scope="col" className="px-6 py-5">
-                    id
+                    #
                   </th>
                   <th scope="col" className="px-6 py-5">
                     Name
@@ -115,11 +115,11 @@ const StudentPage = () => {
               </th> */}
 
                   <th scope="col" className="px-6 py-5 text-nowrap">
-                    roll no
+                    Roll Number
                   </th>
 
                   <th scope="col" className="px-6 py-5 text-nowrap">
-                    isLoggedIn
+                    Logged In
                   </th>
 
                   {/* <th scope="col" className="px-6 py-5 text-end">
@@ -140,8 +140,9 @@ const StudentPage = () => {
             ) : (
               data?.data?.map((sale) => <SaleRow sale={sale} key={sale.id} />)
             )} */}
-                {data?.map((student) => (
-                  <StudentList student={student} key={student.id} />
+                {data?.map((student,index) => (
+                 
+                  <StudentList student={student} key={student.id} index={index}/>
                 ))}
               </tbody>
             </table>

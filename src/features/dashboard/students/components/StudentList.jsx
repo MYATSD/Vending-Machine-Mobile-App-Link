@@ -4,7 +4,8 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import useSWR, { mutate } from 'swr'
 
-const StudentList = ({student: {id,name,roll_no,isLoggedIn}}) => {
+const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
+  console.log(isLoggedIn)
    const fetcher = (url) => fetch(url).then((res) => res.json());
 
  const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
@@ -27,7 +28,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn}}) => {
   return (
       <tr className=" hover:bg-pink-50">
          <td className="px-6 py-3  ">
-          { id}
+          {index +1}
          </td>
          <th
            scope="row"
@@ -47,15 +48,13 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn}}) => {
            className="px-6 py-3 text-nowrap font-medium text-stone-900 dark:text-white"
          >
            <span className=" block text-nowrap">{roll_no}</span>
-           <span className=" block  text-stone-500 text-xs">
-            
-           </span>
+           
          </th>
          <th
            scope="row"
            className="px-6 py-3 text-nowrap font-medium text-stone-900 dark:text-white"
          >
-         { isLoggedIn}
+         <span className=" block text-nowrap">{isLoggedIn == true ? "True" : "False"}</span>
          </th>
        
          <td className="px-6 py-3 text-end">
