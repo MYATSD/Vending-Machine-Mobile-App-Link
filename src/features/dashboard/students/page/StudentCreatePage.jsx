@@ -3,16 +3,18 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import Header from '../../components/Header'
 import Container from '@/components/Container'
-import { mutate } from 'swr'
 import { useRouter } from 'next/navigation'
+import useSWR, { mutate } from 'swr'
 
 const StudentCreatePage = () => {
   const {handleSubmit, isSubmitting,register, formState: {errors}} = useForm()
   const router = useRouter()
+ const fetcher = (url) => fetch(url).then((res) => res.json());
 
+ const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
   const onSubmit = async(formData)=>{
-    console.log(formData)
-     console.log("creating")
+     const isExistRollNo = data?.find((student)=> formData.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase() === student.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase())
+    console.log(isExistRollNo)
     const res = await fetch(
       "https://studentsinfo-production.up.railway.app/students_info",
       {
@@ -32,8 +34,8 @@ const StudentCreatePage = () => {
       }
     );
 
-    const data =await res.json()
-    console.log(data)
+    const student =await res.json()
+    console.log(student)
     mutate("https://studentsinfo-production.up.railway.app/students_info")
    
     if(formData.back_to_customer_list){

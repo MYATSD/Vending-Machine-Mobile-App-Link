@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 import useSWR, { mutate } from 'swr'
 
 const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
-  console.log(isLoggedIn)
+  // console.log(isLoggedIn)
    const fetcher = (url) => fetch(url).then((res) => res.json());
 
  const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
@@ -26,7 +26,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
   }
  
   return (
-      <tr className=" hover:bg-pink-50">
+      <tr className=" hover:bg-blue-50">
          <td className="px-6 py-3  ">
           {index +1}
          </td>
@@ -63,7 +63,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
                type="button"
                onClick={handleDeleteBtn}
              
-               className="size-10 flex justify-center items-center  bg-white border border-stone-200    hover:bg-stone-100 hover:text-pink-700 focus:z-10 focus:ring-2 focus:ring-pink-700 focus:text-pink-700 dark:bg-stone-800 dark:border-stone-700 dark:text-white dark:hover:text-white dark:hover:bg-stone-700 dark:focus:ring-pink-500 dark:focus:text-white"
+               className="size-10 flex justify-center items-center  bg-white border border-stone-200    hover:bg-stone-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-stone-800 dark:border-stone-700 dark:text-white dark:hover:text-white dark:hover:bg-stone-700 dark:focus:ring-blue-500 dark:focus:text-white"
              >
              
                  <Trash2 className="size-4" />
@@ -71,7 +71,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
              </button>
              <Link
                href={``}
-               className="size-10 flex justify-center items-center  bg-white border border-stone-200    hover:bg-stone-100 hover:text-pink-700 focus:z-10 focus:ring-2 focus:ring-pink-700 focus:text-pink-700 dark:bg-stone-800 dark:border-stone-700 dark:text-white dark:hover:text-white dark:hover:bg-stone-700 dark:focus:ring-pink-500 dark:focus:text-white"
+               className="size-10 flex justify-center items-center  bg-white border border-stone-200    hover:bg-stone-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-stone-800 dark:border-stone-700 dark:text-white dark:hover:text-white dark:hover:bg-stone-700 dark:focus:ring-blue-500 dark:focus:text-white"
              >
                <ArrowRight className="size-4" />
              </Link>

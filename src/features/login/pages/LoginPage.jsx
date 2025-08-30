@@ -66,7 +66,7 @@ export default function LoginPage() {
         <div className=" w-full h-screen">
           <img src="/assets/login-photo.jpg" alt="" className=" bg-cover md:bg-none" />
         </div>
-        <div className="absolute md:hidden bottom-0 -translate-y-80 translate-x-4  bg-white  mt-20 rounded w-[350px]  p-2 ">
+        <div className=" absolute md:hidden bottom-0 -translate-y-80 translate-x-4  bg-white  mt-20 rounded w-[350px]  p-2 ">
           <h2 className="text-2xl md:text-4xl font-bold md:mb-4 mt-5 md:mt-0 font-title px-4 md:px-0 ">Sanitary Napkin Vending Machine</h2>
        <div className="md:mt-10 w-full md:w-2/3 md:flex md:flex-col justify-center  md:border-gray-500 md:shadow p-5 md:p-10">
           <div className="flex flex-col w-full ">
@@ -106,7 +106,7 @@ export default function LoginPage() {
           </p> */}
        </div>
         </div>
-         <div className="hidden  bg-white md:bg-none md:flex flex-col mt-20 rounded w-[350px] md:w-full  items-center p-2 md:p-0">
+         <div className=" hidden  bg-white md:bg-none md:flex flex-col mt-20 rounded w-[350px] md:w-full  items-center p-2 md:p-0">
           <h2 className="text-2xl md:text-4xl font-bold md:mb-4 mt-5 md:mt-0 font-title px-4 md:px-0 ">Sanitary Napkin Vending Machine</h2>
        <div className="md:mt-10 w-full md:w-2/3 md:flex md:flex-col justify-center  md:border-gray-500 md:shadow p-5 md:p-10">
           <div className="flex flex-col w-full ">

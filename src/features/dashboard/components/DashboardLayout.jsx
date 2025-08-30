@@ -1,10 +1,12 @@
-import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+"use client"
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react'
 
-const DashboardLayout = () => {
+const DashboardLayout = ({children}) => {
 
       const router = useRouter();
       const [isLoading, setIsLoading] = useState(true);
+      const [isLoggedIn, setIsLoggedIn] = useState(false)
     
     //   const autoLogoutIfTokenExpire = async (currentToken) => {
     //     const res = await checkProfile(currentToken);
@@ -16,14 +18,14 @@ const DashboardLayout = () => {
     
       useEffect(() => {
     
-        const isLogIn =localStorage.getItem("isLoggedIn")
-        console.log(isLogIn)
-    
+       
+    const isLogIn = localStorage.getItem("isAdminLoggedIn") === "true";
+setIsLoggedIn(isLogIn);
         if (!isLogIn) {
-          router.push("/");
+          router.push("/dashboard");
         } 
         setIsLoading(false);
-      });
+      },[isLoggedIn]);
     
       if (isLoading) {
         return (

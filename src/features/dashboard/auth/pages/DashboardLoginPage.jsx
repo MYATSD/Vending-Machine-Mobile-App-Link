@@ -5,7 +5,7 @@ import useStudentInfo from "@/store/useAdminInfo";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import { useForm } from "react-hook-form";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 export default function DashboardLoginPage() {
   const [name, setName] = useState("");
@@ -57,9 +57,9 @@ export default function DashboardLoginPage() {
         }
       );
       const data = await res.json();
-      console.log(data);
-
-      localStorage.setItem("isAdminLoggedIn", currentAdmin.isLoggedIn);
+  
+      mutate("https://studentsinfo-production.up.railway.app/admin_info")
+      localStorage.setItem("isAdminLoggedIn", true);
       localStorage.setItem("Admin Name", currentAdminName);
       // const currentAdmin = {
       //   name: admin[0].name,
@@ -81,7 +81,7 @@ export default function DashboardLoginPage() {
           <div className="w-full bg-white  shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-stone-800 dark:border-stone-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <div className=" flex items-end gap-1">
-                <h1 className="text-xl font-bold leading-tight tracking-tight text-pink-600  md:text-3xl dark:text-white">
+                <h1 className="text-xl font-bold leading-tight tracking-tight text-blue-600  md:text-3xl dark:text-white">
                   Sanitary Napkin Vending Machine Dashboard
                 </h1>
               </div>
@@ -101,7 +101,7 @@ export default function DashboardLoginPage() {
                     {...register("email")}
                     autoComplete="email"
                     id="email"
-                    className="bg-stone-50 border border-stone-300 text-stone-900  focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                    className="bg-stone-50 border border-stone-300 text-stone-900  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required
                   />
@@ -119,7 +119,7 @@ export default function DashboardLoginPage() {
                     id="password"
                     autoComplete="current-password"
                     placeholder="••••••••"
-                    className="bg-stone-50 border border-stone-300 text-stone-900  focus:ring-pink-600 focus:border-pink-600 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                    className="bg-stone-50 border border-stone-300 text-stone-900  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                   />
                 </div>
@@ -130,7 +130,7 @@ export default function DashboardLoginPage() {
                         id="remember-me"
                         type="checkbox"
                         value=""
-                        className="w-4 h-4 text-pink-600 bg-stone-100 border-stone-300   focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-stone-800 focus:ring-2 dark:bg-stone-700 dark:border-stone-600"
+                        className="w-4 h-4 text-blue-600 bg-stone-100 border-stone-300   focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-stone-800 focus:ring-2 dark:bg-stone-700 dark:border-stone-600"
                       />
                       <label
                         htmlFor="remember-me"
@@ -142,7 +142,7 @@ export default function DashboardLoginPage() {
                   </div>
                   <a
                     href="#"
-                    className="text-sm font-medium text-pink-600 hover:underline dark:text-pink-500"
+                    className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
                   >
                     Forgot password?
                   </a>
@@ -150,7 +150,7 @@ export default function DashboardLoginPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full text-white flex disabled:pointer-events-none disabled:opacity-80 justify-center items-center gap-3 bg-pink-600 hover:bg-pink-400 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-pink-400 dark:hover:bg-pink-500 dark:focus:ring-pink-600"
+                  className="w-full text-white flex disabled:pointer-events-none disabled:opacity-80 justify-center items-center gap-3 bg-blue-600 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600"
                 >
                   Sign in
                   {isSubmitting && <p>loading.....</p>}
@@ -159,7 +159,7 @@ export default function DashboardLoginPage() {
         Don’t have an account yet?{" "}
         <Link
           href="/register"
-          className="font-medium text-pink-600 hover:underline dark:text-pink-500"
+          className="font-medium text-blue-600 hover:underline dark:text-blue-500"
         >
           Sign up
         </Link>

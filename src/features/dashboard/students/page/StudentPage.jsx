@@ -6,6 +6,7 @@ import StudentList from "../components/StudentList";
 import Container from "@/components/Container";
 import useSWR from "swr";
 import Link from "next/link";
+import DashboardLayout from "../../components/DashboardLayout";
 
 const StudentPage = () => {
   const [studentsList, setStudentsList] = useState([]);
@@ -13,35 +14,35 @@ const StudentPage = () => {
 
  const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
 //  setStudentsList(data)
-  const handleCreateBtn = async () => {
-    console.log("creating")
-    const res = await fetch(
-      "https://studentsinfo-production.up.railway.app/students_info",
-      {
-        method: "POST",
-         headers: {
-      "Content-Type": "application/json", 
-    },
-        body: JSON.stringify(
-          {
-         "id": Math.random(),
-          "name": "Oak Kyaw",
-          "roll_no": "VI EC-Ext:4",
-          "isLoggedIn": false
-        }
-        )
-        ,
-      }
-    );
+  // const handleCreateBtn = async () => {
+  //   console.log("creating")
+  //   const res = await fetch(
+  //     "https://studentsinfo-production.up.railway.app/students_info",
+  //     {
+  //       method: "POST",
+  //        headers: {
+  //     "Content-Type": "application/json", 
+  //   },
+  //       body: JSON.stringify(
+  //         {
+  //        "id": Math.random(),
+  //         "name": "Oak Kyaw",
+  //         "roll_no": "VI EC-Ext:4",
+  //         "isLoggedIn": false
+  //       }
+  //       )
+  //       ,
+  //     }
+  //   );
 
-    const data =await res.json()
-    console.log(data)
-    setStudentsList(...studentsList, data)
+  //   const data =await res.json()
+  //   console.log(data)
+  //   setStudentsList(...studentsList, data)
 
-  };
+  // };
 
   return (
-    <>
+    <DashboardLayout>
       <Container>
         <Header />
         <section>
@@ -53,7 +54,7 @@ const StudentPage = () => {
                 </div>
                 <input
                   type="text"
-                  className=" w-96 bg-stone-50 border border-stone-300 text-stone-900 text-sm  focus:ring-pink-500 focus:border-pink-500 block ps-10 p-2.5  dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                  className=" w-96 bg-stone-50 border border-stone-300 text-stone-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5  dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search Sale"
                   //   onChange={handleSearchInput}
                   //   ref={searchRef}
@@ -68,7 +69,7 @@ const StudentPage = () => {
             )} */}
               </div>
               <div>
-                <Link href={"/dashboard/students/student-create"} className=" bg-pink-600 text-white  px-4 py-2 rounded" onClick={handleCreateBtn}>
+                <Link href={"/dashboard/students/student-create"} className=" bg-blue-600 text-white  px-4 py-2 rounded" >
                   Create student
                 </Link>
               </div>
@@ -157,7 +158,7 @@ const StudentPage = () => {
       } */}
         </section>
       </Container>
-    </>
+    </DashboardLayout>
   );
 };
 

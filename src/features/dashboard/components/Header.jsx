@@ -1,5 +1,6 @@
 "use client";
 import useAdminInfo from "@/store/useAdminInfo";
+import Link from "next/link";
 import React, { useState } from "react";
 import useSWR from "swr";
 
@@ -13,7 +14,7 @@ const Header = () => {
   
    const {currentAdminInfo} = useAdminInfo()
 
- console.log(currentAdminInfo)
+//  console.log(currentAdminInfo)
  
 return (
   <>
@@ -22,13 +23,13 @@ return (
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <div className="flex items-end gap-3">
-                <img src={`/assets/Menstruation.png`} className="h-12" alt="" />
+                {/* <img src={`/assets/Menstruation.png`} className="h-12" alt="" /> */}
                 <h1 className="text-xl hidden sm:block font-bold leading-tight tracking-tight text-stone-900 md:text-3xl dark:text-white">
-                  Vending Machine
+                  Admin Dashboard
                 </h1>
               </div>
             </div>
-            <div className="flex gap-3 items-center">
+            <Link href="/dashboard/admin-profile" className="flex gap-3 items-center">
               <img
                 src={currentAdminInfo?.profile_image ? currentAdminInfo.profile_image: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"}
                 alt="account photo"
@@ -38,7 +39,7 @@ return (
                 <p className="font-bold">{currentAdminInfo?.name}</p>
                 <p className="text-sm text-stone-500">{currentAdminInfo?.email}</p>
               </div>
-            </div>
+            </Link>
           </div>
         </header>
  )}
