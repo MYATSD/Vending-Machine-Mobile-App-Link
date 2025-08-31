@@ -12,13 +12,14 @@ const Header = () => {
     fetcher
   );
   
-   const {currentAdminInfo} = useAdminInfo()
+  //  const {currentAdminInfo} = useAdminInfo()
+  //  console.log(currentAdminInfo)
 
 //  console.log(currentAdminInfo)
  
 return (
   <>
-  {currentAdminInfo.isLoggedIn && (
+  {isLoading ? <p>Loading...</p> : data[0]?.isLoggedIn && (
   <header className="mb-5 py-3 border-b border-stone-200 sticky top-0 z-50 bg-white">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -31,13 +32,13 @@ return (
             </div>
             <Link href="/dashboard/admin-profile" className="flex gap-3 items-center">
               <img
-                src={currentAdminInfo?.profile_image ? currentAdminInfo.profile_image: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"}
+                src={data[0]?.profile_image ? data[0].profile_image: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"}
                 alt="account photo"
                 className="border-2 border-white shadow-sm size-8 rounded-full object-cover object-top"
               />
               <div>
-                <p className="font-bold">{currentAdminInfo?.name}</p>
-                <p className="text-sm text-stone-500">{currentAdminInfo?.email}</p>
+                <p className="font-bold">{data[0]?.name}</p>
+                <p className="text-sm text-stone-500">{data[0]?.email}</p>
               </div>
             </Link>
           </div>

@@ -6,6 +6,7 @@ import Container from "@/components/Container";
 import Header from "@/components/Header";
 import { useForm } from "react-hook-form";
 import useSWR, { mutate } from "swr";
+import Swal from "sweetalert2";
 
 export default function DashboardLoginPage() {
   const [name, setName] = useState("");
@@ -26,17 +27,22 @@ export default function DashboardLoginPage() {
     const currentAdmin = data.filter(
       (admin) => admin.email === currentAdminEmail
     );
-    const currentAdminId = currentAdmin[0].id;
-    const currentAdminName = currentAdmin[0].name;
-    const currentAdminProfile = currentAdmin[0].profile;
-    const currentAdminProfileImage = currentAdmin[0].profile_image;
-    const currentAdminPassword = currentAdmin[0].password;
-    const currentAdminPasswordConfirmation = currentAdmin[0].password_confirmation;
+    if(currentAdmin.length === 0){
+     alert("Not available candidate")
+    }
+   
+    const currentAdminId = currentAdmin[0]?.id;
+    const currentAdminName = currentAdmin[0]?.name;
+    const currentAdminProfile = currentAdmin[0]?.profile;
+    const currentAdminProfileImage = currentAdmin[0]?.profile_image;
+    const currentAdminPassword = currentAdmin[0]?.password;
+    const currentAdminPasswordConfirmation = currentAdmin[0]?.password_confirmation;
     // const current =currentStudent[0]?.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase()
-    console.log(currentAdmin)
-    console.log(formData)
+    console.log(currentAdmin.length)
+    console.log(currentAdmin[0])
 
     if (currentAdmin[0].password == formData.password) {
+       setCurrentAdmin(currentAdmin[0]);
       const res = await fetch(
         `https://studentsinfo-production.up.railway.app/admin_info/${currentAdminId}`,
         {
@@ -68,15 +74,17 @@ export default function DashboardLoginPage() {
       //   profile_image: admin[0].profile_image,
       //   isLoggedIn: true,
       // };
-       setCurrentAdmin(currentAdmin[0]);
+      
       router.push("/dashboard/students");
     } else {
+      alert("Wrong Password!Please try again")
     }
   };
 
   return (
     <>
-      <section className="bg-stone-50 dark:bg-stone-900 min-h-svh bg-[url('/images/login-cartoon-img.png')] bg-no-repeat bg-bottom bg-[length:400px_auto] lg:bg-[length:500px_auto] ">
+    {isLoading ? <p>Loading...</p>: (
+        <section className="bg-stone-50 dark:bg-stone-900 min-h-svh bg-[url('/images/login-cartoon-img.png')] bg-no-repeat bg-bottom bg-[length:400px_auto] lg:bg-[length:500px_auto] ">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-svh lg:py-0">
           <div className="w-full bg-white  shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-stone-800 dark:border-stone-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -169,6 +177,7 @@ export default function DashboardLoginPage() {
           </div>
         </div>
       </section>
+    )}
     </>
   );
 }

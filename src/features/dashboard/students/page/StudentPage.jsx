@@ -13,33 +13,7 @@ const StudentPage = () => {
  const fetcher = (url) => fetch(url).then((res) => res.json());
 
  const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
-//  setStudentsList(data)
-  // const handleCreateBtn = async () => {
-  //   console.log("creating")
-  //   const res = await fetch(
-  //     "https://studentsinfo-production.up.railway.app/students_info",
-  //     {
-  //       method: "POST",
-  //        headers: {
-  //     "Content-Type": "application/json", 
-  //   },
-  //       body: JSON.stringify(
-  //         {
-  //        "id": Math.random(),
-  //         "name": "Oak Kyaw",
-  //         "roll_no": "VI EC-Ext:4",
-  //         "isLoggedIn": false
-  //       }
-  //       )
-  //       ,
-  //     }
-  //   );
 
-  //   const data =await res.json()
-  //   console.log(data)
-  //   setStudentsList(...studentsList, data)
-
-  // };
 
   return (
     <DashboardLayout>

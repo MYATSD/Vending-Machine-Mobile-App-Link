@@ -22,6 +22,7 @@
     "react-hook-form": "^7.62.0",
     "react-hot-toast": "^2.5.2",
     "sooner": "^1.1.4",
+    "sweetalert2": "^11.22.5",
     "swr": "^2.3.5",
     "tailwind-merge": "^3.3.1",
     "zustand": "^5.0.7"

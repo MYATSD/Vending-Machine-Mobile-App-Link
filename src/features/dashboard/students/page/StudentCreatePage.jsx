@@ -5,6 +5,7 @@ import Header from '../../components/Header'
 import Container from '@/components/Container'
 import { useRouter } from 'next/navigation'
 import useSWR, { mutate } from 'swr'
+import toast, { Toaster } from 'react-hot-toast'
 
 const StudentCreatePage = () => {
   const {handleSubmit, isSubmitting,register, formState: {errors}} = useForm()
@@ -13,9 +14,19 @@ const StudentCreatePage = () => {
 
  const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
   const onSubmit = async(formData)=>{
-     const isExistRollNo = data?.find((student)=> formData.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase() === student.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase())
-    console.log(isExistRollNo)
-    const res = await fetch(
+      const toastId = toast.loading("Uploading ....");
+     const isExistedRollNo = data?.find((student)=> formData.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase() === student.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase())
+     if(isExistedRollNo){
+      console.log("exist")
+        toast("This Roll no is already exist",{
+            id:toastId
+        }
+        
+        )
+
+     }
+   else{
+     const res = await fetch(
       "https://studentsinfo-production.up.railway.app/students_info",
       {
         method: "POST",
@@ -37,13 +48,19 @@ const StudentCreatePage = () => {
     const student =await res.json()
     console.log(student)
     mutate("https://studentsinfo-production.up.railway.app/students_info")
+    toast.success("New student added successfully",{
+      id: toastId
+    })
    
+   }
     if(formData.back_to_customer_list){
       router.push("/dashboard/students")
     }
 
   }
   return (
+    <>
+    
     <Container>
 
     <Header/>
@@ -70,7 +87,7 @@ const StudentCreatePage = () => {
                 className={`bg-stone-50 border ${
                   errors.name
                     ? "border-red-500 focus:ring-red-500 focus:border-red-500"
-                    : "border-stone-300 focus:ring-pink-500 focus:border-pink-500"
+                    : "border-stone-300 focus:ring-blue-500 focus:border-blue-500"
                 } text-stone-900 text-sm  block w-full p-2.5`}
               />
               {errors.name && (
@@ -96,7 +113,7 @@ const StudentCreatePage = () => {
               className={`bg-stone-50 border ${
                 errors.roll_no
                   ? "border-red-500 focus:ring-red-500 focus:border-red-500"
-                  : "border-stone-300 focus:ring-pink-500 focus:border-pink-500"
+                  : "border-stone-300 focus:ring-blue-500 focus:border-blue-500"
               } text-stone-900 text-sm  block w-full p-2.5`}
             />
             {errors.roll_no && (
@@ -115,7 +132,7 @@ const StudentCreatePage = () => {
                 required
                 id="all-correct"
                 type="checkbox"
-                className="w-4 h-4 text-pink-600 bg-stone-100 border-stone-300 focus:ring-pink-500"
+                className="w-4 h-4 text-blue-600 bg-stone-100 border-stone-300 focus:ring-blue-500"
               />
               <label
                 htmlFor="all-correct"
@@ -130,7 +147,7 @@ const StudentCreatePage = () => {
                 {...register("back_to_customer_list")}
                 id="back-to-Customer-list"
                 type="checkbox"
-                className="w-4 h-4 text-pink-600 bg-stone-100 border-stone-300 focus:ring-pink-500"
+                className="w-4 h-4 text-blue-600 bg-stone-100 border-stone-300 focus:ring-blue-500"
               />
               <label
                 htmlFor="back-to-Customer-list"
@@ -151,7 +168,7 @@ const StudentCreatePage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="text-white bg-pink-600 disabled:pointer-events-none disabled:opacity-80 inline-flex items-center justify-center gap-3 hover:bg-pink-600 font-medium  text-sm w-full sm:w-auto px-5 py-2.5"
+              className="text-white bg-blue-600 disabled:pointer-events-none disabled:opacity-80 inline-flex items-center justify-center gap-3 hover:bg-blue-600 font-medium  text-sm w-full sm:w-auto px-5 py-2.5"
             >
               <span>Save Customer</span>
               {/* {isSubmitting && <ButtonSpinner />} */}
@@ -161,6 +178,8 @@ const StudentCreatePage = () => {
       </form>
     </div>
     </Container>
+    <Toaster/>
+    </>
   )
 }
 

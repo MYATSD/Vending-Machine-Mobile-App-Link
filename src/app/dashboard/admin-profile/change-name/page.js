@@ -1,9 +1,9 @@
-import ProfileChangeImagePage from '@/features/dashboard/admin-profile/pages/ProfileChangeImagePage'
+import ProfileChangeNamePage from '@/features/dashboard/admin-profile/pages/ProfileChangeNamePage'
 import React from 'react'
 
 const Page = () => {
   return (
-    <ProfileChangeImagePage/>
+    <ProfileChangeNamePage/>
   )
 }
 
