@@ -100,13 +100,13 @@ const AdminProfileSection = () => {
             <dt className="text-stone-500 w-[150px] text-sm  dark:text-white">
               Admin Name
             </dt>
-            <dd className="text-sm dark:text-stone-400">Admin</dd>
+            <dd className="text-sm dark:text-stone-400">{data[0]?.name}</dd>
           </dl>
           <dl className=" flex  items-center">
             <dt className="text-stone-500 w-[150px] text-sm dark:text-white">
               Email Address
             </dt>
-            <dd className="text-sm dark:text-stone-400">admin@gmail.com</dd>
+            <dd className="text-sm dark:text-stone-400">{data[0]?.email}</dd>
           </dl>
           
         </div>
