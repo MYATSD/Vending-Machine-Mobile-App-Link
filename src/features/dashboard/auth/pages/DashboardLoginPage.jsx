@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import { useForm } from "react-hook-form";
 import useSWR, { mutate } from "swr";
 import Swal from "sweetalert2";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function DashboardLoginPage() {
   const [name, setName] = useState("");
@@ -77,7 +78,7 @@ export default function DashboardLoginPage() {
       
       router.push("/dashboard/students");
     } else {
-      alert("Wrong Password!Please try again")
+      toast.error("Wrong Password!Please try again")
     }
   };
 
@@ -178,6 +179,8 @@ export default function DashboardLoginPage() {
         </div>
       </section>
     )}
+
+    <Toaster/>
     </>
   );
 }
