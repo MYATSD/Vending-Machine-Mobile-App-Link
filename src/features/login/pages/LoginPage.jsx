@@ -5,6 +5,7 @@ import useStudentInfo from "@/store/useAdminInfo";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import useSWR from "swr";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const [name, setName] = useState("");
@@ -23,11 +24,9 @@ export default function LoginPage() {
         s.name.toLowerCase() == currentStudentName
     );
     // const currentStudentID = currentStudent[0].id
-    const currentStudentRollNo =currentStudent[0].roll_no
-    const currentStudentId =currentStudent[0].id
+    const currentStudentRollNo =currentStudent[0]?.roll_no
+    const currentStudentId =currentStudent[0]?.id
 
-    console.log(currentStudentRollNo)
-    console.log(rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase())
 
     if (currentStudentRollNo?.trim().replace(/[\s:;.-]/g, "").toLowerCase() == rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase()) {
       const res =await fetch(`https://studentsinfo-production.up.railway.app/students_info/${currentStudentId}`,{
@@ -53,7 +52,8 @@ export default function LoginPage() {
       localStorage.setItem("studentName", name);
       router.push("/download");
     } else {
-      // setError("Invalid name or roll number.");
+      console.log("not match")
+      toast.error("Fail! Your name and roll no are not match")
     }
   };
 
@@ -146,7 +146,7 @@ export default function LoginPage() {
         </div>
       </div>
     </section>
-    
+    <Toaster/>
     </>
   
   );
