@@ -18,16 +18,18 @@ export default function LoginPage() {
     const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
   const handleLogin = async () => {
    
-    const currentStudentName =name.trim().toLowerCase()
+    const currentStudentName =name.trim().toLowerCase().replace(/[\s:;.-]/g, "")
+    console.log(currentStudentName)
     const currentStudent= data?.filter(
       (s) =>
-        s.name.trim().toLowerCase() == currentStudentName
+      s.name.trim().toLowerCase().replace(/[\s:;.-]/g, "") ===currentStudentName
     );
     // const currentStudentID = currentStudent[0].id
     const currentStudentRollNo =currentStudent[0]?.roll_no
     const currentStudentId =currentStudent[0]?.id
 
-
+console.log(currentStudentRollNo?.trim().replace(/[\s:;.-]/g, ""))
+console.log(rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase())
     if (currentStudentRollNo?.trim().replace(/[\s:;.-]/g, "").toLowerCase() == rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase()) {
       const res =await fetch(`https://studentsinfo-production.up.railway.app/students_info/${currentStudentId}`,{
 
