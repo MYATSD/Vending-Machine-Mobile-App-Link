@@ -164,15 +164,7 @@ export default function DashboardLoginPage() {
                   Sign in
                   {isSubmitting && <p>loading.....</p>}
                 </button>
-                {/* <p className="text-sm font-light text-stone-500 dark:text-stone-400">
-        Don’t have an account yet?{" "}
-        <Link
-          href="/register"
-          className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-        >
-          Sign up
-        </Link>
-      </p> */}
+                
               </form>
             </div>
           </div>

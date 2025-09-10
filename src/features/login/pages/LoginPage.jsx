@@ -21,7 +21,7 @@ export default function LoginPage() {
     const currentStudentName =name.trim().toLowerCase()
     const currentStudent= data?.filter(
       (s) =>
-        s.name.toLowerCase() == currentStudentName
+        s.name.trim().toLowerCase() == currentStudentName
     );
     // const currentStudentID = currentStudent[0].id
     const currentStudentRollNo =currentStudent[0]?.roll_no
