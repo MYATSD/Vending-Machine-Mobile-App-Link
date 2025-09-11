@@ -8,7 +8,7 @@ const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data, isLoading, error } = useSWR(
-    "https://studentsinfo-production.up.railway.app/admin_info",
+    "https://studentsinfo-production-4b64.up.railway.app/admin_info",
     fetcher
   );
   

@@ -10,7 +10,7 @@ const AdminProfileSection = () => {
   const router = useRouter()
     const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data, isLoading, error } = useSWR(
-    "https://studentsinfo-production.up.railway.app/admin_info",
+    "https://studentsinfo-production-4b64.up.railway.app/admin_info",
     fetcher
   );
 
@@ -18,7 +18,7 @@ const AdminProfileSection = () => {
     console.log("logout")
        
     const res = await fetch(
-        `https://studentsinfo-production.up.railway.app/admin_info/1`,
+        `https://studentsinfo-production-4b64.up.railway.app/admin_info/1`,
         {
           method: "PATCH",
           headers: {
@@ -38,7 +38,7 @@ const AdminProfileSection = () => {
         }
       );
     console.log(res)
-     mutate("https://studentsinfo-production.up.railway.app/admin_info")
+     mutate("https://studentsinfo-production-4b64.up.railway.app/admin_info")
       localStorage.clear()
        router.push("/dashboard")
     //  localStorage.removeItem("Admin Name")

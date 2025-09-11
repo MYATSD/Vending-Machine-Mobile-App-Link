@@ -10,14 +10,14 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
   // console.log(isLoggedIn)
    const fetcher = (url) => fetch(url).then((res) => res.json());
 
- const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
+ const {data, isLoading,error,} = useSWR("https://studentsinfo-production-4b64.up.railway.app/students_info",fetcher)
   const handleDeleteBtn = async()=>{
     const toastId = toast.loading("Deleting ....");
     if (!confirm("Are you sure to delete?")) return;
 
 
     try {
-      const res = await fetch(`https://studentsinfo-production.up.railway.app/students_info/${id}`,
+      const res = await fetch(`https://studentsinfo-production-4b64.up.railway.app/students_info/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -31,7 +31,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
         throw new Error(json.message);
       }
       toast.success(json.message, { id: toastId });
-      mutate("https://studentsinfo-production.up.railway.app/students_info")
+      mutate("https://studentsinfo-production-4b64.up.railway.app/students_info")
     } catch (err) {
       toast.error(err.message, { id: toastId });
       console.error(err);
@@ -50,7 +50,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
 //    toast({id: toastId})
 //   }
 // });
-  //  const res = await fetch(`https://studentsinfo-production.up.railway.app/students_info/${id}`,
+  //  const res = await fetch(`https://studentsinfo-production-4b64.up.railway.app/students_info/${id}`,
   //   {
   //     method: "DELETE",
   //     headers: {
@@ -59,7 +59,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
       
   //   }
   //  )
-  //  mutate("https://studentsinfo-production.up.railway.app/students_info")
+  //  mutate("https://studentsinfo-production-4b64.up.railway.app/students_info")
   //  if(res.ok){
   //   toast.success("Deleted Successfully",{
   //     id: toastId

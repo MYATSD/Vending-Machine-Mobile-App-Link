@@ -10,7 +10,7 @@ const PasswordChangeSection = () => {
    const router = useRouter()
     const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data, isLoading, error } = useSWR(
-    "https://studentsinfo-production.up.railway.app/admin_info",
+    "https://studentsinfo-production-4b64.up.railway.app/admin_info",
     fetcher
   );
     const {handleSubmit, register,isSubmitting, formState: {errors}} = useForm()
@@ -32,7 +32,7 @@ const PasswordChangeSection = () => {
       });
         }
         const res= await fetch(
-        `https://studentsinfo-production.up.railway.app/admin_info/1`,
+        `https://studentsinfo-production-4b64.up.railway.app/admin_info/1`,
         {
           method: "PATCH",
           headers: {

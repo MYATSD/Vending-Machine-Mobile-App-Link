@@ -19,7 +19,7 @@ export default function DashboardLoginPage() {
 
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data, isLoading, error } = useSWR(
-    "https://studentsinfo-production.up.railway.app/admin_info",
+    "https://studentsinfo-production-4b64.up.railway.app/admin_info",
     fetcher
   );
   const handleLogin = async (formData) => {
@@ -45,7 +45,7 @@ export default function DashboardLoginPage() {
     if (currentAdmin[0].password == formData.password) {
        setCurrentAdmin(currentAdmin[0]);
       const res = await fetch(
-        `https://studentsinfo-production.up.railway.app/admin_info/${currentAdminId}`,
+        `https://studentsinfo-production-4b64.up.railway.app/admin_info/${currentAdminId}`,
         {
           method: "PATCH",
           headers: {
@@ -65,7 +65,7 @@ export default function DashboardLoginPage() {
       );
       const data = await res.json();
   
-      mutate("https://studentsinfo-production.up.railway.app/admin_info")
+      mutate("https://studentsinfo-production-4b64.up.railway.app/admin_info")
       localStorage.setItem("isAdminLoggedIn", true);
       localStorage.setItem("Admin Name", currentAdminName);
       // const currentAdmin = {

@@ -12,17 +12,17 @@ export default function LoginPage() {
   const [rollNo, setRollNo] = useState("");
   // const [error, setError] = useState("");
   const router = useRouter();
-  const { students_info } = useStudentInfo();
   
-   const fetcher = (url) => fetch(url).then((res) => res.json());
-    const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
+     const fetcher = (url) => fetch(url).then((res) => res.json());
+
+    const {data, isLoading,error,} = useSWR("https://studentsinfo-production-4b64.up.railway.app/students_info",fetcher)
   const handleLogin = async () => {
    
     const currentStudentName =name.trim().toLowerCase().replace(/[\s:;.-]/g, "")
     console.log(currentStudentName)
     const currentStudent= data?.filter(
       (s) =>
-      s.name.trim().toLowerCase().replace(/[\s:;.-]/g, "") ===currentStudentName
+      s.name.trim().toLowerCase().replace(/[\s:;.-]/g, "") ==  currentStudentName
     );
     // const currentStudentID = currentStudent[0].id
     const currentStudentRollNo =currentStudent[0]?.roll_no
@@ -31,7 +31,7 @@ export default function LoginPage() {
 console.log(currentStudentRollNo?.trim().replace(/[\s:;.-]/g, ""))
 console.log(rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase())
     if (currentStudentRollNo?.trim().replace(/[\s:;.-]/g, "").toLowerCase() == rollNo.trim().replace(/[\s:;.-]/g, "").toLowerCase()) {
-      const res =await fetch(`https://studentsinfo-production.up.railway.app/students_info/${currentStudentId}`,{
+      const res =await fetch(`https://studentsinfo-production-4b64.up.railway.app/students_info/${currentStudentId}`,{
 
 
         method: "PATCH",

@@ -12,7 +12,7 @@ const StudentCreatePage = () => {
   const router = useRouter()
  const fetcher = (url) => fetch(url).then((res) => res.json());
 
- const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
+ const {data, isLoading,error,} = useSWR("https://studentsinfo-production-4b64.up.railway.app/students_info",fetcher)
   const onSubmit = async(formData)=>{
       const toastId = toast.loading("Uploading ....");
      const isExistedRollNo = data?.find((student)=> formData.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase() === student.roll_no.trim().replace(/[\s:;.-]/g, "").toLowerCase())
@@ -27,7 +27,7 @@ const StudentCreatePage = () => {
      }
    else{
      const res = await fetch(
-      "https://studentsinfo-production.up.railway.app/students_info",
+      "https://studentsinfo-production-4b64.up.railway.app/students_info",
       {
         method: "POST",
          headers: {
@@ -47,7 +47,7 @@ const StudentCreatePage = () => {
 
     const student =await res.json()
     console.log(student)
-    mutate("https://studentsinfo-production.up.railway.app/students_info")
+    mutate("https://studentsinfo-production-4b64.up.railway.app/students_info")
     toast.success("New student added successfully",{
       id: toastId
     })

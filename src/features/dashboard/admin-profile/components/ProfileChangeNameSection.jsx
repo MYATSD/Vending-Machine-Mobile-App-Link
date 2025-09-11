@@ -13,7 +13,7 @@ const ProfileChangeNameSection = () => {
        const fetcher = (url) => fetch(url).then((res) => res.json());
 
    const { data, isLoading, error } = useSWR(
-    "https://studentsinfo-production.up.railway.app/admin_info/1",
+    "https://studentsinfo-production-4b64.up.railway.app/admin_info/1",
     fetcher
   );
 
@@ -24,7 +24,7 @@ const ProfileChangeNameSection = () => {
 
         
         const res= await fetch(
-        `https://studentsinfo-production.up.railway.app/admin_info/1`,
+        `https://studentsinfo-production-4b64.up.railway.app/admin_info/1`,
         {
           method: "PATCH",
           headers: {
@@ -50,7 +50,7 @@ const ProfileChangeNameSection = () => {
           id: toastId
         })
      
-        mutate("https://studentsinfo-production.up.railway.app/admin_info/1")
+        mutate("https://studentsinfo-production-4b64.up.railway.app/admin_info/1")
         router.push("/dashboard/admin-profile")
       }
     

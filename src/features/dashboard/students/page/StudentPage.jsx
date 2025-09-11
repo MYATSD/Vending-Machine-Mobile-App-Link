@@ -12,7 +12,7 @@ const StudentPage = () => {
   const [studentsList, setStudentsList] = useState([]);
  const fetcher = (url) => fetch(url).then((res) => res.json());
 
- const {data, isLoading,error,} = useSWR("https://studentsinfo-production.up.railway.app/students_info",fetcher)
+ const {data, isLoading,error,} = useSWR("https://studentsinfo-production-4b64.up.railway.app/students_info",fetcher)
 
 
   return (
