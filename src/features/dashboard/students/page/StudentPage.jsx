@@ -21,27 +21,8 @@ const StudentPage = () => {
         <Header />
         <section>
           <div className="flex justify-between mb-5 w-full">
-            <div className="flex gap-3 justify-between items-center w-full">
-              <div className="relative ">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                  <Search className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-                </div>
-                <input
-                  type="text"
-                  className=" w-96 bg-stone-50 border border-stone-300 text-stone-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5  dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search Sale"
-                  //   onChange={handleSearchInput}
-                  //   ref={searchRef}
-                />
-                {/* {searchParams?.get("q") && (
-              <div
-                className="absolute inset-y-0 end-0 flex items-center pe-3.5 cursor-pointer"
-                onClick={clearSearchInput}
-              >
-                <X className="w-4 h-4 text-stone-500 dark:text-stone-400" />
-              </div>
-            )} */}
-              </div>
+            <div className="flex gap-3 justify-end items-center w-full">
+              
               <div>
                 <Link href={"/dashboard/students/student-create"} className=" bg-blue-600 text-white  px-4 py-2 rounded" >
                   Create student

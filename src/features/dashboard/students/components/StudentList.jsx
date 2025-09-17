@@ -112,12 +112,7 @@ const StudentList = ({student: {id,name,roll_no,isLoggedIn},index}) => {
                  <Trash2 className="size-4" />
               
              </button>
-             <Link
-               href={``}
-               className="size-10 flex justify-center items-center  bg-white border border-stone-200    hover:bg-stone-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-stone-800 dark:border-stone-700 dark:text-white dark:hover:text-white dark:hover:bg-stone-700 dark:focus:ring-blue-500 dark:focus:text-white"
-             >
-               <ArrowRight className="size-4" />
-             </Link>
+           
            </div>
          </td>
        </tr>
